@@ -16,20 +16,23 @@ module.exports = {
 		modulesDirectories: ['node_modules','src'],
 		extension: ['','.js']
 	},
-	module: [ /* define loaders */
-	{
-		test:/\.js$/,
-		exclude: /node_modules/,
-		loader: 'babel',
-		query: {
-			presets: ['es2015']
+	module: {
+		loaders:[
+	 	/* define loaders */
+		{
+			test:/\.js$/,
+			exclude: /node_modules/,
+			loader: 'babel',
+			query: {
+				presets: ['es2015']
+			}
+		},
+		{
+			test:/\.html$/,
+			loader: 'raw'
 		}
+		]
 	},
-	{
-		test:/\.html$/,
-		loader: _'raw'_
-	}
-	],
 	plugins:[
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin()
