@@ -6,6 +6,7 @@ module.exports = {
 	entry: [
 		'webpack-dev-server/client?http://127.0.0.1:8080/',
 		'webpack/hot/only-dev-server',
+		'bootstrap-loader',
 		'./src' /* src directory is where the entry point is */
 	],
 	output: { /* where to put the bundle */
@@ -40,6 +41,14 @@ module.exports = {
 				'sass?outputStyle=expanded'
 			]
 
+		},
+		{
+			test: /\.(woff2?|ttf|eot|svg)$/,
+			loader: 'url?limit=10000'
+		},
+		{
+			test: /bootstrap-sass\/assets\/javascripts\//,
+			loader: 'imports?jQuery=jquery'
 		}
 		]
 	},
