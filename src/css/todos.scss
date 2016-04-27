@@ -1,0 +1,12 @@
+/* nest styles &__ same as .todos__create-input */
+.todos {
+	&__create-input {
+		margin: 0 auto 5px; /* 0 auto centers block */
+		width: 300px;
+	}	
+	
+	&__create-button {
+		display: block;
+		margin: 0 auto 20px;
+	}
+}
