@@ -9,4 +9,8 @@ export default function($scope){
 		isCompleted: true
 	}
 	];
+
+	$scope.onCompletedClick = todo => {
+		todo.isCompleted = !todo.isCompleted;
+	}
 }

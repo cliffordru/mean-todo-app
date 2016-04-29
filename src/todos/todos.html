@@ -15,9 +15,9 @@
 			<th>Actions</th>
 		</tr>
 		<tr ng-repeat="todo in todos">
-			<td><input type="checkbox" ng-checked="todo.isCompleted"  /></td>
+			<td><input type="checkbox" ng-checked="todo.isCompleted" ng-click="onCompletedClick(todo)"/></td>
 			<td>
-			<span class="todos__task">{{ todo.task }}</span>
+			<span class="todos__task" ng-class="{'todos__task--completed': todo.isCompleted}">{{ todo.task }}</span>
 			</td>
 			<td>
 				<button class="btn btn-info">Edit</button>
