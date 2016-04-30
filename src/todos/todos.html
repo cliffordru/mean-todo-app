@@ -4,7 +4,7 @@
 	<h2>ToDo App</h2>
 
 	<form>
-		<input class="form-control todos__create-input" placeholder="What do I need to do?" />
+		<input class="form-control todos__create-input" placeholder="What do I need to do?" ng-model="createTaskInput" />
 		<button class="btn btn-success todos__create-button">Create Task</button>
 	</form>
 
@@ -23,20 +23,5 @@
 				<button class="btn btn-info">Edit</button>
 				<button class="btn btn-danger">Delete</button></td>	
 		</tr>
-	<!--<tr>
-		<th>Completed?</th>
-		<th>Task</th>
-		<th>Actions</th>
-	</tr>
-	<tr>
-		<td>YES</td>
-		<td>Wash Dishes</td>
-		<td>Edit, Delete</td>
-	</tr>
-	<tr>
-		<td>YES</td>
-		<td>Wash Dishes</td>
-		<td>Edit, Delete</td>
-	</tr>-->
 	</table>
 </div>	
