@@ -1,11 +1,11 @@
 import _ from 'lodash';
 
-export default function($scope){
+export default function($scope, todoFactory){
 	// create object
 	let params = {
 		createHasInput: false
 	};
-
+console.log(todoFactory.createTask);
 	$scope.todos = [
 	{
 		task: 'do dishes',
