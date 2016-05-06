@@ -33,20 +33,23 @@ console.log(todoFactory.createTask);
 		todo.isEditing = false;
 	};
 
+	// ES6 Destructuring
+	const { createTask, updateTask, deleteTask
+		, watchCreateTaskInput } = todoFactory
+
 	// using lodash
-	$scope.createTask = _.partial(todoFactory.
-		createTask, $scope, params);
+	$scope.createTask = _.partial(createTask
+		, $scope, params);
 		
 		//.bind(this, $scope, params)
 	
 	// no need to pass todo as param due to binding
-	$scope.updateTask = _.partial(todoFactory.
-		updateTask);
+	$scope.updateTask = _.partial(updateTask);
 
-	$scope.deleteTask = _.partial(todoFactory.
-		deleteTask, $scope);
+	$scope.deleteTask = _.partial(deleteTask
+		, $scope);
 
-	$scope.$watch('createTaskInput', _.partial(todoFactory.
-		watchCreateTaskInput, params, $scope));
+	$scope.$watch('createTaskInput', _.partial
+		(watchCreateTaskInput, params, $scope));
 
 }
