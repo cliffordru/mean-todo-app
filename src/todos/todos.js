@@ -33,37 +33,20 @@ console.log(todoFactory.createTask);
 		todo.isEditing = false;
 	};
 
-	$scope.createTask = () => {
-		params.createHasInput = false;
-		$scope.createTaskInput = '';
+	// using lodash
+	$scope.createTask = _.partial(todoFactory.
+		createTask, $scope, params);
+		
+		//.bind(this, $scope, params)
+	
+	// no need to pass todo as param due to binding
+	$scope.updateTask = _.partial(todoFactory.
+		updateTask);
 
-		// This would be alternative if did not have $watch logic below
-		//$scope.todos.push($scope.createTaskInput);
-	};
+	$scope.deleteTask = _.partial(todoFactory.
+		deleteTask, $scope);
 
-	/* ES6 syntax, older is 
-		$scope.$watch('createTaskInput', function(val){...}) */
-
-	$scope.updateTask = (todo) => {
-		todo.task = todo.updatedTask;
-		todo.isEditing = false;
-	};
-
-	$scope.deleteTask = todoToDelete => {
-		// Using lodash t below is local var iterator
-		_.remove($scope.todos, t => t.task === todoToDelete.task);
-	};
-
-	$scope.$watch('createTaskInput', val => {
-		if(!val && params.createHasInput){
-			$scope.todos.pop();
-			params.createHasInput = false;
-		} else if (val && !params.createHasInput){
-			$scope.todos.push({task: val, isCompleted: false});
-			params.createHasInput = true;
-		} else if (val && params.createHasInput){
-			$scope.todos[$scope.todos.length - 1].task = val;
-		}
-	});
+	$scope.$watch('createTaskInput', _.partial(todoFactory.
+		watchCreateTaskInput, params, $scope));
 
 }
