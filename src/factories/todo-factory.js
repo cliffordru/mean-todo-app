@@ -3,11 +3,20 @@ import angular from 'angular';
 
 const todoFactory = angular.module('app.todoFactory', [])
 
-.factory('todoFactory', () => {
+.factory('todoFactory', ($http) => {
 	// want params to be an object so it is passed by ref
 	function createTask($scope, params) {
-		params.createHasInput = false;
-		$scope.createTaskInput = '';
+		$http.post('/todos', {
+			task: $scope.createTaskInput,
+			isCompleted: false,
+			isEditing: false
+		}).success(response => {
+			$scope.createTaskInput = '';
+			console.log(response);
+		})
+
+		//params.createHasInput = false;
+		//$scope.createTaskInput = '';
 
 		// This would be alternative if did not have $watch logic below
 		//$scope.todos.push($scope.createTaskInput);
