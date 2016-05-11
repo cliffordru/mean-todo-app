@@ -4,6 +4,13 @@ import angular from 'angular';
 const todoFactory = angular.module('app.todoFactory', [])
 
 .factory('todoFactory', ($http) => {
+	
+	function getTasks($scope){
+		$http.get('/todos').success(response => {
+			$scope.todos = response.todos;
+		});
+	}
+
 	// want params to be an object so it is passed by ref
 	function createTask($scope, params) {
 		$http.post('/todos', {
@@ -51,6 +58,7 @@ const todoFactory = angular.module('app.todoFactory', [])
 
 	return {
 		// Since using ES6 do not need long hand createTask: createTask
+		getTasks,
 		createTask,
 		updateTask,
 		deleteTask, 

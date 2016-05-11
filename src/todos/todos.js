@@ -6,7 +6,8 @@ export default function($scope, todoFactory){
 		createHasInput: false
 	};
 console.log(todoFactory.createTask);
-	$scope.todos = [
+	
+	/*$scope.todos = [
 	{
 		task: 'do dishes',
 		isCompleted: false,
@@ -17,7 +18,9 @@ console.log(todoFactory.createTask);
 		isCompleted: true,
 		isEditing: false
 	}
-	];
+	];*/
+
+	todoFactory.getTasks($scope);
 
 	// ES6 syntax
 	$scope.onCompletedClick = todo => {
