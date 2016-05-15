@@ -13,6 +13,8 @@ const todoFactory = angular.module('app.todoFactory', [])
 
 	// want params to be an object so it is passed by ref
 	function createTask($scope, params) {
+		if(!$scope.createTaskInput) {return;}
+		
 		$http.post('/todos', {
 			task: $scope.createTaskInput,
 			isCompleted: false,
