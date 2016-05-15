@@ -18,8 +18,8 @@ const todoFactory = angular.module('app.todoFactory', [])
 			isCompleted: false,
 			isEditing: false
 		}).success(response => {
-			$scope.createTaskInput = '';
-			console.log(response);
+			getTasks($scope);
+			$scope.createTaskInput = '';			
 		})
 
 		//params.createHasInput = false;
@@ -29,14 +29,29 @@ const todoFactory = angular.module('app.todoFactory', [])
 		//$scope.todos.push($scope.createTaskInput);
 	}
 
-	function updateTask(todo){
-		todo.task = todo.updatedTask;
-		todo.isEditing = false;
+	function updateTask($scope, todo){
+		// Non ES6 way
+		//$http.put('/todos' + todo._id)
+
+		// ES6 string interpolation
+		$http.put(`/todos/${todo._id}`, {task: todo.updatedTask})
+		.success(response => {
+			getTasks($scope);
+			todo.isEditing = false;
+		});
+
+		//todo.task = todo.updatedTask;
+		//todo.isEditing = false;
 	}
 
 	function deleteTask($scope, todoToDelete){
+		$http.delete(`/todos/${todoToDelete._id}`)
+		.success(response => {
+			getTasks($scope);
+		});
+
 		// Using lodash t below is local var iterator
-		_.remove($scope.todos, t => t.task === todoToDelete.task);
+		//_.remove($scope.todos, t => t.task === todoToDelete.task);
 	}
 
 	function watchCreateTaskInput(params, $scope,

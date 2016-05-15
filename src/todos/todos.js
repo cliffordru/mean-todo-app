@@ -47,7 +47,7 @@ console.log(todoFactory.createTask);
 		//.bind(this, $scope, params)
 	
 	// no need to pass todo as param due to binding
-	$scope.updateTask = _.partial(updateTask);
+	$scope.updateTask = _.partial(updateTask, $scope);
 
 	$scope.deleteTask = _.partial(deleteTask
 		, $scope);
